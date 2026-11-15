@@ -1,0 +1,12 @@
+{
+  "query": {
+    "bool": {
+      "filter": [
+        { "term": { "service.keyword": "payment-adapter" } },
+        { "terms": { "level.keyword": ["WARN", "ERROR"] } },
+        { "term": { "correlation_id.keyword": "pay-7f2" } }
+      ]
+    }
+  },
+  "sort": [{ "timestamp": "asc" }]
+}

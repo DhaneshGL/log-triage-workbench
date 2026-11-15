@@ -1,0 +1,5 @@
+index=application_logs service=checkout-api level=ERROR
+| stats count values(message) as evidence by correlation_id
+| join correlation_id [ search index=application_logs service=payment-adapter (level=WARN OR level=ERROR) ]
+| table timestamp service host correlation_id duration_ms message
+| sort timestamp
